@@ -4,6 +4,9 @@
   "description": "A simple to do server",
   "main": "index.js",
   "scripts": {
+    "build": "esbuild src/index.js --bundle --platform=node --target=node16 --outfile=dist/out.js",
+    "start:prod": "npm run build && node dist/out.js",
+    "start:dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "test": "jest src/index.test.js"
   },
@@ -12,7 +15,9 @@
   "dependencies": {
     "body-parser": "^1.18.0",
     "ejs": "^2.5.7",
+    "esbuild": "^0.17.12",
     "express": "^4.15.4",
+    "nodemon": "^2.0.21",
     "supertest": "^6.2.3"
   },
   "devDependencies": {
