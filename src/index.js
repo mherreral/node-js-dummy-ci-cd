@@ -1,6 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { tasks } = require('./routes');
+const dotenv = require('dotenv');
+dotenv.config();
+
 const app = express();
+
+const host = process.env.HOST || 'http://localhost';
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,9 +42,11 @@ app.get('/', function (req, res) {
   res.render('index', { task, complete });
 });
 
+app.use('/tasks', tasks);
+
 if (require.main === module) {
   app.listen(3000, function () {
-    console.log('server is running on port http://localhost:' + port);
+    console.log(`server is running on port ${host}:${port}`);
   });
 }
 
