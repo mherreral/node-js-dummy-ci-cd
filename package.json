@@ -9,7 +9,7 @@
     "start:prod": "node dist/main.js",
     "start:dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "test": "mocha"
+    "test": "mocha test/int"
   },
   "author": "Devenes",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "jest": "^28.0.2",
+    "jest": "^28.1.3",
     "mocha": "^10.2.0"
   }
 }

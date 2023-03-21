@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 router.post('/', function (req, res) {
   const { task } = req.body;
   taskList.push(task);
-  res.send(task + ' - task added');
+  res.status(201).send(task + ' - task added');
 });
 
 // delete tasks
