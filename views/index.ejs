@@ -1,42 +1,39 @@
 <html>
-
-<head>
-    <title> To Do App </title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
-    <link href="/styles.css" rel="stylesheet">
-</head>
-
-<body>
+  <head>
+    <title>To Do App</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" />
+    <link href="/styles.css" rel="stylesheet" />
+  </head>
+  <body>
     <div class="container">
-        <h2> A Simple To-Do List App </h2>
+      <h2>A Simple To-Do List App</h2>
 
-        <form action="/addtask" method="POST">
+      <form id="add_task">
+        <input type="text" id="task" name="task" placeholder="Add new task" />
+        <button type="submit">Add Task</button>
+      </form>
+      <form onsubmit="onSubmit">
+        <h2>Added Task</h2>
 
-            <input type="text" name="newtask" placeholder="Add new task">
-            <button> Add Task </button>
+        <% for( var i=0; i < task.length; i++){ %>
+        <li>
+          <input type="checkbox" name="check" value="<%= task[i] %>" />
+          <%= task[i] %>
+        </li>
+        <% } %>
 
+        <button type="submit" id="top" class="button">Remove</button>
+      </form>
 
-            <h2> Added Task </h2>
+      <h2>Completed task</h2>
 
-            <% for( var i=0; i < task.length; i++){ %>
-                <li><input type="checkbox" name="check" value="<%= task[i] %>" />
-                    <%= task[i] %>
-                </li>
-                <% } %>
-
-                    <button formaction="/removetask" type="submit" id="top" class="button"> Remove </button>
-        </form>
-
-        <h2> Completed task </h2>
-
-        <% for(var i=0; i < complete.length; i++){ %>
-            <li><input type="checkbox" checked>
-                <%= complete[i] %>
-            </li>
-            <% } %>
-
+      <% for(var i=0; i < complete.length; i++){ %>
+      <li>
+        <input type="checkbox" checked />
+        <%= complete[i] %>
+      </li>
+      <% } %>
     </div>
-
-</body>
-
+    <script defer src="main.js"></script>
+  </body>
 </html>
