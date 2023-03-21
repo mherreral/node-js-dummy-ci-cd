@@ -65,4 +65,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/walking-skeleton-js:${{github.run_number}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/walking-skeleton-js:latest,${{ secrets.DOCKERHUB_USERNAME }}/walking-skeleton-js:${{github.run_number}}
