@@ -9,7 +9,7 @@
     "start:prod": "node dist/out.js",
     "start:dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "test": "jest src/index.test.js"
+    "test": "mocha"
   },
   "author": "Devenes",
   "license": "MIT",
@@ -22,6 +22,8 @@
     "supertest": "^6.2.3"
   },
   "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-semistandard": "^17.0.0",
@@ -31,6 +33,7 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "jest": "^28.0.2"
+    "jest": "^28.0.2",
+    "mocha": "^10.2.0"
   }
 }
