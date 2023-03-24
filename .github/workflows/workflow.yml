@@ -66,3 +66,19 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/walking-skeleton-js:latest,${{ secrets.DOCKERHUB_USERNAME }}/walking-skeleton-js:${{github.run_number}}
+  deploy:
+    needs: release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: SSH to instance
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secret. INSTANCE_USER }}
+        key: ${{ secret. INSTANCE_KEY }}
+    
+    - name: Deploy app
+      run: |
+      docker pull mherreral/walking-skeleton-js
+      docker run -p 8080:3000 mherreral/walking-skeleton-js
