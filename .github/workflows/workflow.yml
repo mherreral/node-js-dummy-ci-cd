@@ -1,5 +1,11 @@
 name: CI/CD workflow
 on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - reopened
   push:
     branches:
       - master
@@ -8,17 +14,28 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [16.x]
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: run superlinter
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JAVASCRIPT_STANDARD: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint project
+        run: npm run lint
+
+      - name: Test project
+        run: npm test
 
   build:
     needs: lint
@@ -26,7 +43,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
 
     steps:
       - name: Checkout Code
@@ -43,9 +60,6 @@ jobs:
 
       - name: Build project
         run: npm run build --if-present
-
-      - name: Test project
-        run: npm test
 
   release:
     needs: build
