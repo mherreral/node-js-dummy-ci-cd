@@ -1,5 +1,11 @@
 name: CI/CD workflow
 on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - reopened
   push:
     branches:
       - master
