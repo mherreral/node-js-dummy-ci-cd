@@ -80,5 +80,5 @@ jobs:
     
     - name: Deploy app
       run: |
-      docker pull mherreral/walking-skeleton-js
-      docker run -p 8080:3000 mherreral/walking-skeleton-js
+        docker pull mherreral/walking-skeleton-js
+        docker run -p 8080:3000 mherreral/walking-skeleton-js
