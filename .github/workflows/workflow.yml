@@ -80,10 +80,5 @@ jobs:
           script: |
             sudo yum update
             sudo yum install docker
-            sudo usermod -a -G docker ec2-user
-            id ec2-user
-            newgrp docker
-            sudo systemctl enable docker.service
-            sudo systemctl start docker.service
             docker pull mherreral/walking-skeleton-js
             docker run -p 80:3000 -d mherreral/walking-skeleton-js
