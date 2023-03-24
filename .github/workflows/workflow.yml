@@ -71,14 +71,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH to instance
+      - name: Install and run docker
         uses: appleboy/ssh-action@v0.1.8
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets. INSTANCE_USER }}
           key: ${{ secrets. INSTANCE_KEY }}
-
-      - name: Deploy app
-        run: |
-          docker pull mherreral/walking-skeleton-js
-          docker run -p 8080:3000 mherreral/walking-skeleton-js
+          script: |
+            sudo yum update
+            sudo yum install docker
+            sudo usermod -a -G docker ec2-user
+            id ec2-user
+            newgrp docker
+            sudo systemctl enable docker.service
+            sudo systemctl start docker.service
+            docker pull mherreral/walking-skeleton-js
+            docker run -p 80:3000 -d mherreral/walking-skeleton-js
