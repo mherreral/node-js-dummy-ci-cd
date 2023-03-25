@@ -85,6 +85,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: sanhidalgoo,mherreral
       - name: Install and run docker
         uses: appleboy/ssh-action@v0.1.8
         with:
