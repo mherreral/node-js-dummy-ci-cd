@@ -3,7 +3,7 @@ const { taskList } = require('../data');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  //res.json(taskList);
+  res.json(taskList);
   res.send(200);
 })
 
