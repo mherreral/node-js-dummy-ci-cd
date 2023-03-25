@@ -92,12 +92,7 @@ jobs:
           username: ${{ secrets. INSTANCE_USER }}
           key: ${{ secrets. INSTANCE_KEY }}
           script: |
-            sudo yum update
-            sudo yum install docker -y
-            sudo usermod -a -G docker ec2-user
-            id ec2-user
-            newgrp docker
-            sudo systemctl enable docker.service
-            sudo systemctl start docker.service
+            docker stop $(docker ps -a -q)
+            docker rm $(docker ps -a -q)
             docker pull mherreral/walking-skeleton-js
-            docker run -p 80:3000 -d mherreral/walking-skeleton-js
+            docker run -p 80:3000 -d mherreral/walking-skeleton-js:latest
