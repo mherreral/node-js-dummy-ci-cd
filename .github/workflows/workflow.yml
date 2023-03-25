@@ -88,7 +88,8 @@ jobs:
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: sanhidalgoo,mherreral
+          approvers: sanhidalgoo,mherreral,juansedo
+          minimum-approvals: 1
       - name: Install and run docker
         uses: appleboy/ssh-action@v0.1.8
         with:
